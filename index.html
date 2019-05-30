@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Let and Const</title>
+    <link href="/es6modules/app.js">
+  </head>
+  <body>
+    <div class="people">
+      <p>Me</p>
+      <p>U</p>
+      <p>No u</p>
+    </div>
+    <script>
+
+      // ========== New Varialbes - Creation, Updating and Scoping ========== //
+
+      // var can be reassigned and updated, but is function scoped.
+      // var width = 100;
+      // console.log(width);
+      // width = 200;
+      // console.log(width);
+
+      // var age = 100;
+      // if (age > 12) {
+      //   let dogYears = age * 7;
+      //   console.log(`You are ${dogYears} dog years old!`);
+      // }
+
+      // let and const are block scoped.
+      // let height = 200;
+      // const key = 'abc123';
+
+      // for (var i = 0; i < 10; i++) {
+      //   console.log(i);
+      //   setTimeout(() => {
+      //     console.log(`The number is ${i}`);
+      //   }, 1000);
+      // }
+
+      // let is blocked scoped so it will not display the number is 10 afterwards.
+      // for (let i = 0; i < 10; i++) {
+      //   console.log(i);
+      //   setTimeout(() => {
+      //     console.log(`The number is ${i}`);
+      //   }, 1000);
+      // }
+
+      // Temporal dead zone
+      // You can access the variable, but not necessarily the value.
+      // console.log(pizza);
+      // var pizza = 'Deep Dish';
+      // console.log(pizza);
+
+      // ========== Function Improvements: Arrows and Default Arguments ========== //
+
+      // Arrow Functions
+      // const names = ['bro', 'foe', 'moe'];
+
+      // const fullNames = names.map((name) => {
+      //   return `${name} jobs`;
+      // });
+
+      // const fullNames2 = names.map((name) => `${name} jobs`);
+      // console.log(fullNames2);
+
+      // const sayName = (name) => { alert(`Hello ${name}`)};
+      // sayName('Noah');
+
+      // If you use this, it will inherit the parent container. If there is no bounding container
+      // then it will use the window as the parent.
+
+      // ========== Template Strings ========== //
+
+      // const course = 'RFB2';
+      // const flightNumber = '20-AC2019-jz';
+      // const accountNumber = '1235161353';
+
+      // const make ='BMW';
+      // const model = 'x5';
+      // const colour = 'Royal Blue';
+
+      // // .startsWith()
+      // console.log(flightNumber.startsWith('AC')); // false
+      // console.log(flightNumber.startsWith('AC', 3)); // move 3 spots over and check
+
+      // // .endsWith()
+      // console.log(flightNumber.endsWith('-jz')); // true
+      // console.log(flightNumber.endsWith('jz')); // true
+
+      // // .includes()
+      // console.log(flightNumber.includes('jz')); // true
+      // console.log(accountNumber.includes('123')); // true
+
+      // // .repeat()
+      // function leftPad(str, length = 20) {
+      //   return `> ${' '.repeat(length - str.length)}${str}`;
+      // }
+
+      // console.log(leftPad(make));
+      // console.log(leftPad(model));
+      // console.log(leftPad(colour));
+
+      // ========== Destructuring ========== //
+
+      // const person = {
+      //   first: 'Noah',
+      //   last: 'Peloquin',
+      //   country: 'oosa'
+      // };
+      // // Top level variables
+      // const {country, first,last} = person;
+      // console.log(first);
+      // console.log(last);
+      // console.log(country);
+
+      // // Nested example
+      // const website = {
+      //   url: 'Bobross.com',
+      //   links: {
+      //     social: {
+      //       twitter: '@Bobross',
+      //       instagram: '@DaboiRoss'
+      //     }
+      //   }
+      // }
+
+      // const { twitter, instagram } = website.links.social;
+
+      // console.log(twitter);
+      // console.log(instagram);
+
+      // const settings = {width: 300, color: 'black'}; // Wants height, fontsize as well.
+      // const {width, height, color, fontSize} = settings; // Acting like a default constructor.
+
+      // Object destructuring with varialbe renaming and default values.
+      // const { w: width = 400, h: height = 500} = {w: 800};
+      // console.log(width);
+      // console.log(height);
+
+      // // Destrucuring Arrays
+      // const details = ['Noha', 322, 'wundrfull.us'];
+      // const [name, id, website] = details;
+      // console.log(name, id, website);
+
+      // const data = 'Basketball, Sports, 90210, 23';
+      // const [itemName, category, sku, inventory] = data.split(',');
+
+      // const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
+      // const [captain, manager, ...players] = team;
+
+      // console.log(captain, manager, players);
+
+      // let inRing = 'Hulk Hogan';
+      // let onSide = 'Joe Rogan';
+
+      // // if you wanted to switch
+      // console.log(inRing, onSide);
+      // [inRing, onSide] = [onSide, inRing];
+      // console.log(inRing, onSide);
+
+      // let dinner = {
+      //   total: 25,
+      //   tip: 0.20,
+      //   tax: 0.15
+      // }
+
+      // function tipCalc({total, tip = 0.15, tax = 0.15}) {
+      //   return total + (tip*total) + (tax*total);
+      // }
+
+      // let result = tipCalc(dinner);
+      // console.log(result);
+
+      // const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+
+      // for (let i = 0; i < cuts.length; i++) {
+      //   console.log(cuts[i]);
+      // }
+
+      // // Cannot abort or skip items
+      // cuts.forEach((cut) => {
+      //   console.log(cut);
+      // });
+
+      // for (const index in cuts) {
+      //   console.log(cuts[index]);
+      // }
+
+      // Here you can deconstruct cut
+      // for (const [i, cut] of cuts.entries()) {
+      //   console.log(`${i}: ${cut}`);
+      // }
+
+      // ========== Iterables & Looping ========== //
+
+      // function addUpNumbers() {
+      //   let total = 0;
+      //   for (num of arguments) {
+      //     total += num;
+      //   }
+      //   console.log(total);
+      //   return total;
+      // }
+      // addUpNumbers(1,1,1,1,2,2424,14124,2);
+      // const name = 'Noah';
+      // for (const char of name) {
+      //   console.log(char);
+      // }
+
+      // Use for in for objects
+
+      // const people = document.querySelectorAll('.people p'); // Node list
+      // console.log(people);
+      // const peopleArray = Array.from(people); // Now an array
+      // console.log(peopleArray);
+      // const names = peopleArray.map(person => person.textContent);
+
+      // ========== An Array of Array Improvements ========== //
+
+      // // Array.from will take a second argument that maps for you.
+      // const peeps = document.querySelectorAll('.people p');
+      // const peepsArray = Array.from(peeps, person => {
+      //   console.log(person);
+      //   return person.textContent;
+      // });
+
+      // console.log(peepsArray);
+
+      // function sumAll() {
+      //   const nums = Array.from(arguments);
+      //   return nums.reduce((prev,next) => prev + next, 0);
+      // }
+
+      // console.log(sumAll(231,313,12,4,124,1));
+
+      // const ages =[32, 15, 19, 12];
+
+      // const adultPresent = ages.some(age => age >= 18);
+      // console.log(adultPresent);
+
+      // const allOldEnough = ages.every(age => age >= 19);
+      // console.log(allOldEnough);
+
+      // ========== Spread Operator ========== //
+
+      // const featured = ['Blob', 'Snob'];
+      // const specialty = ['Za', 'Bra'];
+
+      // const combined = [...featured, 'Extra', ...specialty];
+      // console.log(combined);
+
+      // // if you want to copy, non destructive.
+      // const doublecombined = [...combined];
+      // console.log(doublecombined);
+
+      // Spread into a function.
+      // const inventors = ['Einstein', 'Newton', 'Galileo'];
+      // const newInventors = ['Musk', 'Jobs'];
+      // inventors.push(...newInventors);
+      // console.log(inventors);
+
+      // const name = ['Noah', 'Peloquin'];
+
+      // function sayHi(first, last) {
+      //   alert(`Hey there ${first} ${last}`);
+      // }
+      // sayHi(...name);
+
+      // function convertCurrency(rate, ...amounts) {
+      //   return amounts.map(amount => amount * rate);
+      // }
+
+      // const amounts = convertCurrency(1.54, 10, 24, 35, 68, 45);
+      // console.log(amounts);
+
+      // const runner = ['Name', 132, 5.5, 4.43];
+      // const [name, id, ...runs] = runner;
+      // console.log(name, id, runs);
+      // console.log(runs[0]);
+
+      // const first = 'snickers';
+      // const last = 'boi';
+      // const age = 2;
+      // const breed = 'Dat boi';
+      // const dog = {
+      //   first,
+      //   last,
+      //   age,
+      //   breed,
+      //   pals: ['Hugo', 'sunny']
+      // };
+      // console.log(dog);
+
+      // const modal = {
+      //   create(selector) {
+
+      //   },
+      //   open(content) {
+
+      //   },
+      //   close(goodbye) {
+
+      //   }
+      // }
+
+      // ========== Object Literals ========== //
+
+      // function invertColor(color) {
+      //   return '#' + ("000000" + (0xFFFFFF ^ parseInt(color.substring(1),16)).toString(16)).slice(-6);
+      // }
+
+      // // computed property names
+      // const key = 'pocketColor';
+      // const value = '#ffc600';
+
+      // const tShirt = {
+      //   [key]: value,
+      //   [`${key}Opposite`]: invertColor(value)
+      // };
+
+      // console.log(tShirt);
+
+      // const keys =['size', 'color', 'weight'];
+      // const values = ['medium', 'red', 100];
+
+      // const shirt = {
+      //   [keys.shift()]: values.shift(),
+      //   [keys.shift()]: values.shift(),
+      //   [keys.shift()]: values.shift(),
+      // }
+
+      // console.log(shirt);
+
+      // ========== Promises ========== //
+
+      // Promises: Then will only come back when it is successful.
+      // So if it isn't successfull then we need to catch it with catch() example:
+      // const postsPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
+      // postsPromise
+      //   .then(data => data.json())
+      //   .then(data => {console.log(data)})
+      //   .catch((err) => {
+      //     console.error(err);
+      //   })
+
+      // const p = new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve(Error('Big ouchie'));
+      //   }, 1000);
+      // });
+
+      // p
+      //   .then(data => {
+      //     console.log(data);
+      //   })
+      //   .catch(err => {
+      //     console.error(err);
+      //   });
+
+      // ========== Symbols ========== //
+
+      // Primitive types, symbol.
+      // You will never have an identical symbol.
+      // const noah = Symbol('Noah');
+      // const person = Symbol('Noah');
+
+      // Symbols are not iterable. Good for storing private data or need data to be absolutely unique.
+      // const classRoom = {
+      //   [Symbol('Mark')]: { grade: 50, gender: 'male' },
+      //   [Symbol('Olivia')]: { grade: 34, gender: 'female' },
+      //   [Symbol('Olivia')]: { grade: 34, gender: 'female' }
+      // }
+
+      // for (person in classRoom) {
+      //   console.log(person);
+      // }
+
+      // const syms = Object.getOwnPropertySymbols(classRoom);
+      // console.log(syms);
+      // const data = syms.map(sym => classRoom[sym]);
+      // console.log(data);
+
+      // ========== Prototypal Inheritance and Classes ========== //
+
+      // prototype
+      // function Dog(name, breed) {
+      //   this.name = name;
+      //   this.breed = breed;
+      // }
+      // Dog.prototype.bark = function() {
+      //   console.log(`Bark Bark! My name is ${this.name}`);
+      // }
+      // Dog.prototype.cuddle = function () {
+      //   console.log(`I love you owner`);
+      // }
+      // const dogoi = new Dog('Dogoi', 'Cena');
+      // const dogboi = new Dog('Dogboi', 'Jena');
+
+      // dogoi.bark();
+      // dogboi.cuddle();
+
+      // class
+      class Dog{
+        constructor(name, breed) {
+          this.name = name;
+          this.breed = breed;
+        }
+        bark() {
+          console.log(`Bark Bark! My name is ${this.name}`);
+        }
+        cuddle() {
+          console.log(`I love you owner`);
+        }
+        static info() {
+          console.log('A dog is better than a cat by 100 times');
+        }
+        get description() {
+          return `${this.name} is a ${this.breed} type of dog`;
+        }
+        set nicknames(value) {
+          this.nick = value.trim();
+        }
+        get nicknames() {
+          return `${this.nick}`;
+        }
+      }
+
+      const gogoi = new Dog('Dogoi', 'Cena');
+      const gogboi = new Dog('Dogboi', 'Jena');
+
+      gogoi.bark();
+      gogboi.cuddle();
+      Dog.info();
+      console.log(gogboi.description);
+      gogoi.nicknames = 'dat boi';
+      console.log(gogoi.nicknames);
+
+
+    </script>
+  </body>
+</html>
